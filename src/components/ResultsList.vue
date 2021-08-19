@@ -2,7 +2,7 @@
   <div class="article" v-for="result in results" :key="result.cacheId">
     <h2>
       <a :href="result.link"
-        >{{ result.pagemap.metatags[0].citation_title }}
+        >{{ result.pagemap.metatags[0].citation_title || result.title }}
       </a>
     </h2>
     <p class="citation">
