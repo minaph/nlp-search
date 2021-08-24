@@ -15,7 +15,7 @@
       </span>
     </p>
 
-    <p>{{ result.snippet }}</p>
+    <p v-html="result.snippet"></p>
   </div>
 </template>
 
@@ -38,11 +38,12 @@ export default defineComponent({
           "https://cors-yuki.herokuapp.com/" + element.link!
         ).then((response) => response.text());
         const htmlDoc = parser.parseFromString(html, "text/html");
-        const longerContent = htmlDoc.querySelector(".card-title")?.nextSibling;
-        if (longerContent && longerContent.nodeName === "#text") {
-          element.snippet = (
-            longerContent as ReturnType<typeof document.createTextNode>
-          ).data;
+        const sectionMarker = htmlDoc.querySelector(".card-title");
+
+        if (sectionMarker) {
+          const longerContent = sectionMarker.parentElement!;
+          sectionMarker.remove();
+          element.snippet = longerContent.innerHTML;
         }
       });
     });
