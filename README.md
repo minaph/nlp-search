@@ -1,5 +1,8 @@
 # nlp-search
 
+Web site to serach ACL Anthology
+
+[Backend is made by google apps script](https://github.com/minaph/nlp-search-server) 
 ## Project setup
 ```
 yarn install
